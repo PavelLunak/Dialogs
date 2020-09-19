@@ -3,4 +3,13 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="item_background_1">#ECECEC</color>
+    <color name="item_background_2">#FFFFFF</color>
+
+    <color name="test_dialog_header_background_color">#0019A8</color>
+    <color name="test_dialog_message_text_color">#855400</color>
+    <color name="test_dialog_buttons_text_color">#FFF4BC</color>
+    <color name="test_dialog_buttons_background_color">#00672B</color>
+
 </resources>

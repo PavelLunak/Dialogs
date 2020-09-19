@@ -9,41 +9,166 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="AlertDialog - příklady"
+            android:textColor="#C53131"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnNoButtonAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AlertDialog bez tlačítek"
+            android:text="Bez tlačítek a s ikonou"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btnCancelButtonAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AlertDialog s tlačítkem ZAVŘÍT"
+            android:text="S tlačítkem ZAVŘÍT"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btnYesNoButtonsAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AlertDialog s tlačítky ANO a NE"
+            android:text="S tlačítky ANO a NE"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnListAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Výběr jedné položky ze seznamu nabídnutých"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnListAlertWithAdapter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Výběr jedné položky ze seznamu nabídnutých - s adaptérem"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnListAlertWithCustomAdapter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Výběr jedné položky ze seznamu nabídnutých - s vlastním adaptérem"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btnSingleChoiceListAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AlertDialog se seznamem položek"
+            android:text="Výběr jedné položky ze seznamu nabídnutých - s RadioButton"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btnMultiChoiceListAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AlertDialog se seznamem položek"
+            android:text="Výběr NĚKOLIKA položek ze seznamu nabídnutých - s CheckBox"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnAlertWithCustomHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="S vlastní hlavičkou"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnAlertWithCustomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="S vlastním layoutem"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnAlertError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="S vlastním layoutem bez hlavičky a s vlastním tlačítkem"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="Vlastní dialog"
+            android:textColor="#C53131"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnCustomDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login dialog"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCustomDialogInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INFO dialog"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCustomDialogWarn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WARN dialog"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCustomDialogError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ERROR dialog"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCustomDialogYesNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ano Ne"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCustomDialogInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zadání textu"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCustomDialogSelect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volba z nabídky"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCustomDatePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zadání data"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCustomTimePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zadání času"
             android:textAllCaps="false" />
 
     </LinearLayout>
