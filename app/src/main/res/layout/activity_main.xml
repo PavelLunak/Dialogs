@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contextView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -96,79 +96,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="S vlastním layoutem bez hlavičky a s vlastním tlačítkem"
-            android:textAllCaps="false" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center_horizontal"
-            android:text="Vlastní dialog"
-            android:textColor="#C53131"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnCustomDialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Login dialog"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnCustomDialogInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="INFO dialog"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnCustomDialogWarn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="WARN dialog"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnCustomDialogError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ERROR dialog"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnCustomDialogYesNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ano Ne"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnCustomDialogInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Zadání textu"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnCustomDialogSelect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Volba z nabídky"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnCustomDatePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Zadání data"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnCustomTimePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Zadání času"
             android:textAllCaps="false" />
 
     </LinearLayout>

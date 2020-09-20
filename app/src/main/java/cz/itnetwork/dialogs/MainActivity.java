@@ -16,14 +16,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    ScrollView contextView;
 
     Button btnNoButtonAlert;
     Button btnCancelButtonAlert;
@@ -36,15 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnAlertWithCustomHeader;
     Button btnAlertWithCustomLayout;
     Button btnAlertError;
-    Button btnCustomDialog;
-    Button btnCustomDialogInfo;
-    Button btnCustomDialogWarn;
-    Button btnCustomDialogError;
-    Button btnCustomDialogYesNo;
-    Button btnCustomDialogInput;
-    Button btnCustomDialogSelect;
-    Button btnCustomDatePicker;
-    Button btnCustomTimePicker;
 
 
     @Override
@@ -63,15 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAlertWithCustomHeader = findViewById(R.id.btnAlertWithCustomHeader);
         btnAlertWithCustomLayout = findViewById(R.id.btnAlertWithCustomLayout);
         btnAlertError = findViewById(R.id.btnAlertError);
-        btnCustomDialog = findViewById(R.id.btnCustomDialog);
-        btnCustomDialogInfo = findViewById(R.id.btnCustomDialogInfo);
-        btnCustomDialogWarn = findViewById(R.id.btnCustomDialogWarn);
-        btnCustomDialogError = findViewById(R.id.btnCustomDialogError);
-        btnCustomDialogYesNo = findViewById(R.id.btnCustomDialogYesNo);
-        btnCustomDialogInput = findViewById(R.id.btnCustomDialogInput);
-        btnCustomDialogSelect = findViewById(R.id.btnCustomDialogSelect);
-        btnCustomDatePicker = findViewById(R.id.btnCustomDatePicker);
-        btnCustomTimePicker = findViewById(R.id.btnCustomTimePicker);
 
         btnNoButtonAlert.setOnClickListener(this);
         btnCancelButtonAlert.setOnClickListener(this);
@@ -84,15 +70,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAlertWithCustomHeader.setOnClickListener(this);
         btnAlertWithCustomLayout.setOnClickListener(this);
         btnAlertError.setOnClickListener(this);
-        btnCustomDialog.setOnClickListener(this);
-        btnCustomDialogInfo.setOnClickListener(this);
-        btnCustomDialogWarn.setOnClickListener(this);
-        btnCustomDialogError.setOnClickListener(this);
-        btnCustomDialogYesNo.setOnClickListener(this);
-        btnCustomDialogInput.setOnClickListener(this);
-        btnCustomDialogSelect.setOnClickListener(this);
-        btnCustomDatePicker.setOnClickListener(this);
-        btnCustomTimePicker.setOnClickListener(this);
+    }
+
+    private void showInfo(String text) {
+        Snackbar snackbar = Snackbar
+                .make(findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG)
+                .setTextColor(getResources().getColor(R.color.snackbar_text_color))
+                .setAction("Zavřít", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+        snackbar.show();
     }
 
     /*
@@ -108,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialogBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                Toast.makeText(MainActivity.this, "Dialog byl zrušen.", Toast.LENGTH_LONG).show();
+                showInfo("Dialog byl zrušen.");
             }
         });
 
@@ -127,14 +117,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialogBuilder.setNeutralButton("Zrušit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this, "Dialog byl zavřen tlačítkem ZRUŠIT.", Toast.LENGTH_LONG).show();
+                showInfo("Dialog byl zavřen tlačítkem ZRUŠIT.");
             }
         });
 
         alertDialogBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                Toast.makeText(MainActivity.this, "Dialog byl zavřen jinak než tlačítkem ZRUŠIT.", Toast.LENGTH_LONG).show();
+                showInfo("Dialog byl zavřen jinak než tlačítkem ZRUŠIT.");
             }
         });
 
@@ -156,21 +146,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialogBuilder.setPositiveButton("Ano", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this, "ANO", Toast.LENGTH_LONG).show();
+                showInfo("ANO");
             }
         });
 
         alertDialogBuilder.setNegativeButton("Ne", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this, "NE", Toast.LENGTH_LONG).show();
+                showInfo("NE");
             }
         });
 
         alertDialogBuilder.setNeutralButton("Zrušit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this, "Dialog byl zavřen tlačítkem ZRUŠIT.", Toast.LENGTH_LONG).show();
+                showInfo("Dialog byl zavřen tlačítkem ZRUŠIT.");
             }
         });
 
@@ -207,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String selectedAnimal = animals[which];
-                Toast.makeText(MainActivity.this, selectedAnimal, Toast.LENGTH_LONG).show();
+                showInfo(selectedAnimal);
             }
         });
 
@@ -248,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         alertDialogBuilder.setAdapter(adapter, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
-                Toast.makeText(MainActivity.this, adapter.getItem(item), Toast.LENGTH_LONG).show();
+                showInfo(adapter.getItem(item));
             }
         });
 
@@ -285,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialogBuilder.setAdapter(adapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this, "Vybranáno:\n" + items.get(which).getName(), Toast.LENGTH_LONG).show();
+                showInfo("Vybranáno: " + items.get(which).getName());
             }
         });
 
@@ -362,9 +352,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (selectedItem[0].equals("")) {
-                    Toast.makeText(MainActivity.this, "Nebyl vybrán žádný den...", Toast.LENGTH_LONG).show();
+                    showInfo("Nebyl vybrán žádný den...");
                 } else {
-                    Toast.makeText(MainActivity.this, "Vybráno:\n" + selectedItem[0], Toast.LENGTH_LONG).show();
+                    showInfo("Vybráno: " + selectedItem[0]);
                 }
             }
         });
@@ -432,9 +422,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 if (result == null) {
-                    Toast.makeText(MainActivity.this, "Nebyla vybrána žádná barva...", Toast.LENGTH_LONG).show();
+                    showInfo("Nebyla vybrána žádná barva...");
                 } else {
-                    Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
+                    showInfo(result);
                 }
             }
         });
@@ -486,7 +476,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String name = etName.getText().toString();
                 String password = etPassword.getText().toString();
 
-                Toast.makeText(MainActivity.this, "Name: " + name + ", Password: " + password, Toast.LENGTH_LONG).show();
+                showInfo("Name: " + name + "\nPassword: " + password);
             }
         });
 
@@ -544,213 +534,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         animatorSet.start();
     }
 
-    /*
-    Zobrazení vlastního dialogu s vlastním vzhledem.
-    */
-    public void showCustomDialog() {
-        CustomLoginDialog dialog = new CustomLoginDialog(this);
-
-        dialog.setTitle("Přihlášení");
-        dialog.setMessage("Pro pokračování je nutné se přihlásit. Zadej své přihlašovací jméno a heslo a potvrď tlačítkem OK.");
-        dialog.setIcon(R.drawable.ic_lock);
-
-        // Zde není vyžadována hodnota odkazující do resources. Stačí hodnota typu int
-        dialog.setColorHeaderText(Color.WHITE);
-
-        // Následující zakomentovaný řádek je špatně - parametrem musí být hodnota odkazující do resources.
-        //dialog.setColorHeaderBackground(Color.BLACK);
-
-        dialog.setColorHeaderBackground(R.color.test_dialog_header_background_color);
-        dialog.setColorMessageText(R.color.test_dialog_message_text_color);
-        dialog.setColorButtonsText(R.color.test_dialog_buttons_text_color);
-        dialog.setColorButtonsBackground(R.color.test_dialog_buttons_background_color);
-
-        dialog.setListener(new CustomLoginDialog.OnLoginListener() {
-            @Override
-            public void onLogin(String name, String password) {
-                Toast.makeText(MainActivity.this, "Name: " + name + ", Password: " + password, Toast.LENGTH_LONG).show();
-            }
-        });
-
-        dialog.show();
-    }
-
-    public void showCustomDialogInfo() {
-        CustomDialog dialog = new CustomDialog(this, CustomDialog.DialogType.INFO);
-        dialog.setTitle("Info");
-        dialog.setMessage("Toto je vlastní dialog s informační zprávou.");
-        dialog.show();
-    }
-
-    public void showCustomDialogWarn() {
-        CustomDialog dialog = new CustomDialog(this, CustomDialog.DialogType.WARN);
-        dialog.setTitle("Upozornění");
-        dialog.setMessage("Toto je vlastní dialog s upozorněním.");
-        dialog.show();
-    }
-
-    public void showCustomDialogError() {
-        CustomDialog dialog = new CustomDialog(this, CustomDialog.DialogType.ERROR);
-        dialog.setTitle("Chyba");
-        dialog.setMessage("Toto je vlastní chybový dialog.");
-        dialog.show();
-    }
-
-    public void showCustomDialogYesNo() {
-        CustomDialog dialog = new CustomDialog(this, CustomDialog.DialogType.YES_NO);
-        dialog.setTitle("Odhálšení");
-        dialog.setMessage("Opravdu se chcete odhlásit?");
-        dialog.setListener(new CustomDialog.OnCustomDialogButtonClickListener() {
-            @Override
-            public void onCustomDialogOkClicked() {
-
-            }
-
-            @Override
-            public void onCustomDialogYesClicked() {
-                Toast.makeText(MainActivity.this, "Stisknuto ANO", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onCustomDialogNoClicked() {
-                Toast.makeText(MainActivity.this, "Stisknuto NE", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onCustomDialogInputInserted(String inputText) {
-
-            }
-
-            @Override
-            public void onCustomDialogItemSelected(String inputText, int position) {
-
-            }
-        });
-        dialog.show();
-    }
-
-    public void showCustomDialogInput() {
-        CustomDialog dialog = new CustomDialog(this, CustomDialog.DialogType.INPUT);
-        dialog.setTitle("Input");
-        dialog.setMessage("Zadej nějaký text:");
-        dialog.setListener(new CustomDialog.OnCustomDialogButtonClickListener() {
-            @Override
-            public void onCustomDialogOkClicked() {
-
-            }
-
-            @Override
-            public void onCustomDialogYesClicked() {
-
-            }
-
-            @Override
-            public void onCustomDialogNoClicked() {
-
-            }
-
-            @Override
-            public void onCustomDialogInputInserted(String inputText) {
-                Toast.makeText(MainActivity.this, "Zadaný text: " + inputText, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onCustomDialogItemSelected(String inputText, int position) {
-
-            }
-        });
-        dialog.show();
-    }
-
-    public void showCustomDialogSelect() {
-        CustomDialog dialog = new CustomDialog(this, CustomDialog.DialogType.SELECT);
-        dialog.setTitle("Výběr");
-        dialog.setMessage("Vyber položku:");
-
-        String[] items = new String[] {
-                "První položka",
-                "Druhá položka",
-                "Třetí položka",
-                "Čtvrtá položka",
-                "Pátá položka",
-                "Šestá položka",
-                "Sedmá položka",
-                "Osmá položka",
-                "Devátá položka",
-                "Desátá položka",
-                "Jedenáctá položka",
-                "Dvanáctá položka",
-                "Třináctá položka",
-                "Čtrnáctá položka",
-                "Patnáctá položka"};
-
-        dialog.setItems(items);
-
-        dialog.setListener(new CustomDialog.OnCustomDialogButtonClickListener() {
-            @Override
-            public void onCustomDialogOkClicked() {
-
-            }
-
-            @Override
-            public void onCustomDialogYesClicked() {
-
-            }
-
-            @Override
-            public void onCustomDialogNoClicked() {
-
-            }
-
-            @Override
-            public void onCustomDialogInputInserted(String inputText) {
-
-            }
-
-            @Override
-            public void onCustomDialogItemSelected(String selectedItem, int position) {
-                Toast.makeText(MainActivity.this, "Zvoleno: " + selectedItem + ", Pozice v poli: " + position, Toast.LENGTH_LONG).show();
-            }
-        });
-        dialog.show();
-    }
-
-    /*
-    Zobrazení vlastního dialogu s nastavením data.
-    */
-    public void showCustomDatePicker() {
-        CustomDatePicker datePicker = new CustomDatePicker(this, new Date());
-
-        datePicker.setListener(new CustomDatePicker.OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(Date date) {
-                SimpleDateFormat sdf = new SimpleDateFormat("d.MMMM y");
-                String dateToString = sdf.format(date);
-                Toast.makeText(MainActivity.this, dateToString, Toast.LENGTH_LONG).show();
-            }
-        });
-
-        datePicker.show();
-    }
-
-    /*
-    Zobrazení vlastního dialogu s nastavením času.
-    */
-    public void showCustomTimePicker() {
-        CustomTimePicker timePicker = new CustomTimePicker(this, new Date());
-
-        timePicker.setListener(new CustomTimePicker.OnTimeSelectedListener() {
-            @Override
-            public void onTimeSelected(Date time) {
-                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                String dateToString = sdf.format(time);
-                Toast.makeText(MainActivity.this, dateToString, Toast.LENGTH_LONG).show();
-            }
-        });
-
-        timePicker.show();
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -786,33 +569,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnAlertError:
                 showAlertInfo("Všechno se podařilo :-)");
-                break;
-            case R.id.btnCustomDialog:
-                showCustomDialog();
-                break;
-            case R.id.btnCustomDialogInfo:
-                showCustomDialogInfo();
-                break;
-            case R.id.btnCustomDialogWarn:
-                showCustomDialogWarn();
-                break;
-            case R.id.btnCustomDialogError:
-                showCustomDialogError();
-                break;
-            case R.id.btnCustomDialogYesNo:
-                showCustomDialogYesNo();
-                break;
-            case R.id.btnCustomDialogInput:
-                showCustomDialogInput();
-                break;
-            case R.id.btnCustomDialogSelect:
-                showCustomDialogSelect();
-                break;
-            case R.id.btnCustomDatePicker:
-                showCustomDatePicker();
-                break;
-            case R.id.btnCustomTimePicker:
-                showCustomTimePicker();
                 break;
         }
     }
