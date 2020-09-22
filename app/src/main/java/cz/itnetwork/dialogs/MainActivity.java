@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ScrollView contextView;
 
+    Button btnOnlyMessageAlert;
     Button btnNoButtonAlert;
+    Button btnAlertWithIcon;
     Button btnCancelButtonAlert;
     Button btnYesNoButtonsAlert;
     Button btnListAlert;
@@ -47,7 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnOnlyMessageAlert = findViewById(R.id.btnOnlyMessageAlert);
         btnNoButtonAlert = findViewById(R.id.btnNoButtonAlert);
+        btnAlertWithIcon = findViewById(R.id.btnAlertWithIcon);
         btnCancelButtonAlert = findViewById(R.id.btnCancelButtonAlert);
         btnYesNoButtonsAlert = findViewById(R.id.btnYesNoButtonsAlert);
         btnListAlert = findViewById(R.id.btnListAlert);
@@ -59,7 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAlertWithCustomLayout = findViewById(R.id.btnAlertWithCustomLayout);
         btnAlertError = findViewById(R.id.btnAlertError);
 
+        btnOnlyMessageAlert.setOnClickListener(this);
         btnNoButtonAlert.setOnClickListener(this);
+        btnAlertWithIcon.setOnClickListener(this);
         btnCancelButtonAlert.setOnClickListener(this);
         btnYesNoButtonsAlert.setOnClickListener(this);
         btnListAlert.setOnClickListener(this);
@@ -86,13 +92,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /*
+    Zobrazí dialog obsahující pouze zprávu - bez titulku a bez tlačítek.
+    */
+    public void showOnlyMessageAlert() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Dialog obsahující pouze zprávu. Neobsahuje titulek ani žádná tlačítka.");
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    /*
     Zobrazí dialog bez tlačítek.
     */
     public void showNoButtonAlert() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Titulek");
         alertDialogBuilder.setMessage("Tento dialog lze zavřít tlačítkem ZPĚT nebo kliknutí mimo dialog.");
-        alertDialogBuilder.setIcon(getResources().getDrawable(R.drawable.ic_store));
 
         // Reakce na událost zavření dialogu
         alertDialogBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -102,6 +117,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    public void showAlertWithIcon() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Titulek");
+        alertDialogBuilder.setMessage("Dialog s hlavičkou obsahující ikonu.");
+        alertDialogBuilder.setIcon(getResources().getDrawable(R.drawable.ic_store));
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
@@ -537,8 +561,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btnOnlyMessageAlert:
+                showOnlyMessageAlert();
+                break;
             case R.id.btnNoButtonAlert:
                 showNoButtonAlert();
+                break;
+            case R.id.btnAlertWithIcon:
+                showAlertWithIcon();
                 break;
             case R.id.btnCancelButtonAlert:
                 showCancelButtonAlert();

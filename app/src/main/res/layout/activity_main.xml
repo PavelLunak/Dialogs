@@ -22,10 +22,24 @@
             android:textSize="18sp" />
 
         <Button
+            android:id="@+id/btnOnlyMessageAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pouze zpráva"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnNoButtonAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bez tlačítek a s ikonou"
+            android:text="Zpráva a titulek"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnAlertWithIcon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="S ikonou"
             android:textAllCaps="false" />
 
         <Button
