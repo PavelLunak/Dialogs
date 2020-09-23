@@ -350,25 +350,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
         */
 
-        final String[] daysInWeek = new String[]{
-                "Pondělí",
-                "Úterý",
-                "Středa",
-                "Čtvrtek",
-                "Pátek",
-                "Sobota",
-                "Neděle"
+        final String[] animals = new String[]{
+                "Pes",
+                "Kočka",
+                "Králík",
+                "Slepice",
+                "Kráva",
+                "Prase",
+                "Ovce",
+                "Kuna",
+                "Jelen",
+                "Orel"
         };
 
         final String[] selectedItem = {""};
 
         alertDialogBuilder.setSingleChoiceItems(
-                daysInWeek,
+                animals,
                 -1,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        selectedItem[0] = daysInWeek[i];
+                        selectedItem[0] = animals[i];
                     }
                 });
 
@@ -376,7 +379,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (selectedItem[0].equals("")) {
-                    showInfo("Nebyl vybrán žádný den...");
+                    showInfo("Nebylo vybráno žádné zvíře...");
                 } else {
                     showInfo("Vybráno: " + selectedItem[0]);
                 }
@@ -384,6 +387,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         alertDialogBuilder.setNeutralButton("Zrušit", null);
+
+        alertDialogBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                if (selectedItem[0].equals("")) {
+                    showInfo("Nebylo vybráno žádné zvíře...");
+                } else {
+                    showInfo("Vybráno: " + selectedItem[0]);
+                }
+            }
+        });
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
