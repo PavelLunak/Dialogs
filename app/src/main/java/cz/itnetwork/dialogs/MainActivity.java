@@ -96,9 +96,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     */
     public void showOnlyMessageAlert() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Titulek");
+        alertDialogBuilder.setIcon(getResources().getDrawable(R.drawable.ic_store));
+        alertDialogBuilder.setMessage("Text zobrazený v dialogu");
+
+        alertDialogBuilder.setNeutralButton("Zavřít", null);
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+        /*
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Dialog obsahující pouze zprávu. Neobsahuje titulek ani žádná tlačítka.");
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+        */
     }
 
     /*
@@ -138,17 +149,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialogBuilder.setTitle("Titulek");
         alertDialogBuilder.setMessage("Dialog s jedním tlačítkem.");
 
-        alertDialogBuilder.setNeutralButton("Zrušit", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNeutralButton("Zavřít", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                showInfo("Dialog byl zavřen tlačítkem ZRUŠIT.");
+                showInfo("Dialog byl zavřen tlačítkem ZAVŘÍT.");
             }
         });
 
         alertDialogBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                showInfo("Dialog byl zavřen jinak než tlačítkem ZRUŠIT.");
+                showInfo("Dialog byl zavřen jinak než tlačítkem ZAVŘÍT.");
             }
         });
 
@@ -162,7 +173,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void showYesNoButtonsAlert() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Titulek");
-        alertDialogBuilder.setMessage("Dialog s tlačítky ANO, NE a ZRUŠIT. Tento dialog je nastaven tak, že jej lze zavřít pouze některým z tlačítek.");
+        //alertDialogBuilder.setMessage("Dialog s tlačítky ANO, NE a ZAVŘÍT. Tento dialog je nastaven tak, že jej lze zavřít pouze některým z tlačítek.");
+        alertDialogBuilder.setMessage("Máte velký hlad?");
 
         //Zakázání zavření dialogu tlačítkem ZPĚT
         alertDialogBuilder.setCancelable(false);
@@ -181,10 +193,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        alertDialogBuilder.setNeutralButton("Zrušit", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNeutralButton("Zavřít", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                showInfo("Dialog byl zavřen tlačítkem ZRUŠIT.");
+                showInfo("Dialog byl zavřen tlačítkem ZAVŘÍT.");
             }
         });
 
@@ -225,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        alertDialogBuilder.setNeutralButton("Zrušit", null);
+        alertDialogBuilder.setNeutralButton("Zavřít", null);
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
@@ -266,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        alertDialogBuilder.setNeutralButton("Zrušit", null);
+        alertDialogBuilder.setNeutralButton("Zavřít", null);
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
@@ -303,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        alertDialogBuilder.setNeutralButton("Zrušit", null);
+        alertDialogBuilder.setNeutralButton("Zavřít", null);
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
@@ -316,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     */
     public void showSingleChoiceListAlert() {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Vyber den v týdnu");
+        alertDialogBuilder.setTitle("Vyber zvíře");
 
         // Nesmí být nastaven následující zakomentovaný parametr. Jinak nebude seznam zobrazen
         //alertDialogBuilder.setMessage("Zpráva pro uživatele");
@@ -386,7 +398,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        alertDialogBuilder.setNeutralButton("Zrušit", null);
+        alertDialogBuilder.setNeutralButton("Zavřít", null);
 
         alertDialogBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
@@ -410,22 +422,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     */
     public void showMultiChoiceListAlert() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Zvol barvy");
+        alertDialogBuilder.setTitle("Vyber zvířata");
 
         // Nesmí být nastaven následující zakomentovaný parametr. Jinak nebude seznam zobrazen
         //alertDialogBuilder.setMessage("Zpráva pro uživatele");
 
-        final String[] colors = new String[]{
-                "Bílá",
-                "Černá",
-                "Modrá",
-                "Žlutá",
-                "Červená",
-                "Zelená",
-                "Hnědá"
+        final String[] animals = new String[]{
+                "Pes",
+                "Kočka",
+                "Králík",
+                "Slepice"
         };
 
-        final boolean[] checkedColors = new boolean[]{
+        final boolean[] checkedAnimals = new boolean[]{
                 false,
                 false,
                 false,
@@ -435,39 +444,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 false
         };
 
-        alertDialogBuilder.setMultiChoiceItems(colors, checkedColors, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                checkedColors[which] = isChecked;
-            }
-        });
+        alertDialogBuilder.setMultiChoiceItems(
+                animals,
+                checkedAnimals,
+                new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        checkedAnimals[which] = isChecked;
+                    }
+                });
 
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String result = null;
 
-                for (int i = 0; i < checkedColors.length; i ++) {
-                    if (checkedColors[i] == true) {
+                for (int i = 0; i < checkedAnimals.length; i++) {
+                    if (checkedAnimals[i] == true) {
                         if (result == null) {
                             result = "";
                         } else {
                             result += ", ";
                         }
 
-                        result += colors[i];
+                        result += animals[i];
                     }
                 }
 
                 if (result == null) {
-                    showInfo("Nebyla vybrána žádná barva...");
+                    showInfo("Nebyla vybráno žádné zvíře...");
                 } else {
                     showInfo(result);
                 }
             }
         });
 
-        alertDialogBuilder.setNeutralButton("Zrušit", null);
+        alertDialogBuilder.setNeutralButton("Zavřít", null);
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
@@ -518,7 +530,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        alertDialogBuilder.setNeutralButton("Zrušit", null);
+        alertDialogBuilder.setNeutralButton("Zavřít", null);
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
@@ -527,16 +539,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /*
     Zobrazí defaultní AlertDialog bez hlavičky. Tělo dialogu tvoří vlastní layout.
     */
-    public void showAlertInfo(String message) {
+    public void showAlertInfo(String title, String message) {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-        //final View customLayout = getLayoutInflater().inflate(R.layout.custom_error_alert_layout, null);
         final View customLayout = getLayoutInflater().inflate(R.layout.custom_info_alert_layout, null);
         alertDialogBuilder.setView(customLayout);
 
-        ImageView errorImg = customLayout.findViewById(R.id.errorImg);
-        TextView lbaelMessage = customLayout.findViewById(R.id.errorMessage);
-        TextView btnClose = customLayout.findViewById(R.id.errorButton);
+        ImageView dialogImg = customLayout.findViewById(R.id.dialogImg);
+        TextView dialogTitle = customLayout.findViewById(R.id.dialogTitle);
+        TextView dialogMessage = customLayout.findViewById(R.id.dialogMessage);
+        TextView dialogButton = customLayout.findViewById(R.id.dialogButton);
 
         final AlertDialog alertDialog = alertDialogBuilder.create();
 
@@ -544,9 +556,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Aby odkryté pozadí kolem zakulacení rohů nebylo bílé
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        lbaelMessage.setText(message);
+        dialogTitle.setText(title);
+        dialogMessage.setText(message);
 
-        btnClose.setOnClickListener(new View.OnClickListener() {
+        dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
@@ -555,14 +568,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         alertDialog.show();
 
-        ObjectAnimator objectAnimatorAlpha = ObjectAnimator.ofFloat(errorImg, View.ALPHA, 0f, 1f);
+        ObjectAnimator objectAnimatorAlpha = ObjectAnimator.ofFloat(dialogImg, View.ALPHA, 0f, 1f);
         objectAnimatorAlpha.setInterpolator(new LinearInterpolator());
-        objectAnimatorAlpha.setRepeatMode(ObjectAnimator.RESTART);
 
-        ObjectAnimator objectAnimatorScaleX = ObjectAnimator.ofFloat(errorImg, View.SCALE_X, 0f, 1.15f, 0.9f, 1.1f, 0.95f, 1.05f, 1f);
+        ObjectAnimator objectAnimatorScaleX = ObjectAnimator.ofFloat(dialogImg, View.SCALE_X, 0f, 1.15f, 0.9f, 1.1f, 0.95f, 1.05f, 1f);
         objectAnimatorScaleX.setInterpolator(new LinearInterpolator());
 
-        ObjectAnimator objectAnimatorScaleY = ObjectAnimator.ofFloat(errorImg, View.SCALE_Y, 0f, 1.15f, 0.9f, 1.1f, 0.95f, 1.05f, 1f);
+        ObjectAnimator objectAnimatorScaleY = ObjectAnimator.ofFloat(dialogImg, View.SCALE_Y, 0f, 1.15f, 0.9f, 1.1f, 0.95f, 1.05f, 1f);
         objectAnimatorScaleY.setInterpolator(new LinearInterpolator());
 
         AnimatorSet animatorSet = new AnimatorSet();
@@ -612,7 +624,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showAlertWithCustomLayout();
                 break;
             case R.id.btnAlertError:
-                showAlertInfo("Všechno se podařilo :-)");
+                showAlertInfo("Dobrá zpráva!", "Všechno se podařilo :-)");
                 break;
         }
     }
